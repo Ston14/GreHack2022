@@ -14,8 +14,10 @@ En voyant ça, on peut voir qu'il y'a un peu de HTTP et le reste d'ICMP. Donc il
 ### Extraction HTTP
 La c'est assez simpe, il suffit d'aller dans fichier -> Exporter les objets -> HTTP -> et on voit un fichier et on l'exporte
 ![ExfHTTP](ExfiltrationHTTP.png)
+
 On voit donc que c'est un powerpoint, en l'ouvrant on a les steps qu'on est sensé avoir.
 ![pptx](pptx.png)
+
 Pour lister dans l'ordre on a :
 - Base64
 - Keepass
@@ -29,9 +31,11 @@ Ce qu'on sait c'est que ICMP est normalement pas fait pour de l'exfiltration car
 Ici il y'a par exemple un requete ping depuis un hote linux. Qu'on peut reconnaître depuis le TTL mais aussi par le payload.
 #### Exemple
 ![Exemple](icmpbase.png)
+
 #### Solution
 Donc il suffit de trouver une trame qui est un peu differente. Et sur le paquet 233 on voit ce payload 
 ![ExempleDeDetection](Sol.png)
+
 dont les octets du champs data ressemble bizarrement aux Magic Byte d'un fichier keepass. Il est temps d'exfiltrer
 ##### Exfiltration
 J'utilise tshark pour extraire les données de mon pcap.
